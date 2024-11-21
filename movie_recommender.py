@@ -23,6 +23,10 @@ class MovieRecommender:
                                      genres_dummies, emotion_dummies_1, emotion_dummies_2], axis=1)
 
     def compute_cosine_similarity(self):
+        # エンコードされていない場合は先にエンコードを実行
+        if self.df_encoded is None:
+            self.encode_data()
+
         # エンコードされたデータ部分のみを特徴ベクトルとして抽出
         features = self.df_encoded.drop(['ID', 'Title'], axis=1)
         # NaNを0で埋める
@@ -59,7 +63,7 @@ class MovieRecommender:
             return None
 
         # 指定された映画の類似度スコアを取得し、類似度が高い順に並べる
-        similar_movies = self.cosine_sim_df.loc[movie_title].sort_values(ascending=False)
+        similar_movies = self.cosine_sim_df.loc[movie_title].sort_values(ascending=bool(False))
 
         # 自分自身を除外して、上位top_nの映画を推薦
         recommended_movies = similar_movies.drop(movie_title).head(top_n)
