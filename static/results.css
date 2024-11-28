@@ -102,6 +102,47 @@
     padding: 50px;
   }
 
+  #recommendations {
+    display: flex;
+    flex-wrap: wrap;  /* 横並びにして、画面に収まらない場合は折り返す */
+    gap: 20px;
+    padding: 20px;
+    margin-top: 20px;
+  }
+
+  .movie-card {
+    background-color: var(--primary);
+    color: var(--light);
+    border: 1px solid var(--dark);
+    border-radius: 8px;
+    padding: 16px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s, box-shadow 0.3s;
+    display: flex;  /* 横並びにするためにflexboxを使用 */
+    flex-direction: row;  /* 画像とタイトルを横並びに配置 */
+    align-items: center;  /* 画像とテキストを垂直方向に中央揃え */
+    justify-content: flex-start;  /* 左寄せ */
+  }
+
+  .movie-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+  }
+
+  .movie-image {
+    width: 100px;  /* 画像サイズを100pxに設定 */
+    height: auto;
+    border-radius: 4px;
+    margin-right: 16px;  /* 画像とタイトルの間にスペースを追加 */
+    object-fit: cover;
+  }
+
+  .movie-title {
+    font-size: 16px;
+    font-weight: bold;
+  }
+
   .box {
     display: grid;
     grid-gap: 20px;

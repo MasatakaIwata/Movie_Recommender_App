@@ -63,13 +63,16 @@ def recommend():
     # 推薦結果を取得
     recommendations = recommender.recommend_similar_movies()
 
-    # 映画のIDとタイトルのリストを作成
-    response = [{"ID": movie_id, "Title": title} for movie_id, title in recommendations.items()]
+    # 映画のID、タイトル、画像URLのリストを作成
+    response = [
+        {"ID": movie_id, "Title": movie_data['Title'], "ImageURL": movie_data['ImageURL']}
+        for movie_id, movie_data in recommendations.items()
+    ]
 
     # 推薦結果をコンソールに表示
     print("Recommendations:")
     for movie in response:
-        print(f"ID: {movie['ID']}, Title: {movie['Title']}")
+        print(f"ID: {movie['ID']}, Title: {movie['Title']}, ImageURL: {movie['ImageURL']}")
 
     # 推薦結果をJSONとして返す
     return jsonify({"movies": response})

@@ -28,7 +28,7 @@ class MovieRecommender:
             self.encode_data()
 
         # エンコードされたデータ部分のみを特徴ベクトルとして抽出
-        features = self.df_encoded.drop(['ID', 'Title'], axis=1)
+        features = self.df_encoded.drop(['ID', 'Title', 'ImageURL'], axis=1)
         # NaNを0で埋める
         features = features.fillna(0)
         # コサイン類似度を計算
@@ -36,14 +36,15 @@ class MovieRecommender:
         # コサイン類似度をデータフレームとして保持
         self.cosine_sim_df = pd.DataFrame(cosine_sim, index=self.df['Title'], columns=self.df['Title'])
 
-    def add_movie_with_input(self, genres, emotion_label_1, emotion_label_2):
+    def add_movie_with_input(self, genres, emotion_label_1, emotion_label_2, image_url=""):
         # 新しい映画データをユーザー入力から追加 (IDとTitleは固定)
         new_movie_data = {
             'ID': [000],  # 固定のID
             'Title': ['user movie'],  # 固定のタイトル
             'Genres': [genres],  # ユーザー入力のGenres
             'emotion_label_1': [emotion_label_1],  # ユーザー入力のemotion_label_1
-            'emotion_label_2': [emotion_label_2]  # ユーザー入力のemotion_label_2
+            'emotion_label_2': [emotion_label_2],  # ユーザー入力のemotion_label_2
+            'ImageURL': [image_url]  # 画像URLの追加
         }
         new_movie_df = pd.DataFrame(new_movie_data)
         self.df = pd.concat([self.df, new_movie_df], ignore_index=True)
@@ -73,6 +74,10 @@ class MovieRecommender:
         recommendations = {}
         for movie_title, score in recommended_movies.items():
             movie_id = int(self.df[self.df['Title'] == movie_title]['ID'].values[0])
-            recommendations[movie_id] = movie_title # Score: {score:.4f}
+            image_url = self.df[self.df['Title'] == movie_title]['ImageURL'].values[0]
+            recommendations[movie_id] = {
+                'Title': movie_title,
+                'ImageURL': image_url
+            }
 
         return recommendations
