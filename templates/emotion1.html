@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Select Emotion Label 1</title>
+</head>
+<body>
+  <h1>Step 2: Select Emotion Label 1</h1>
+  <div>
+    <button onclick="selectEmotion1('anger')">anger</button>
+    <button onclick="selectEmotion1('disgust')">disgust</button>
+    <button onclick="selectEmotion1('fear')">fear</button>
+    <button onclick="selectEmotion1('joy')">joy</button>
+    <button onclick="selectEmotion1('neutral')">neutral</button>
+    <button onclick="selectEmotion1('sadness')">sadness</button>
+    <button onclick="selectEmotion1('surprise')">surprise</button>
+  </div>
+
+  <script>
+    function selectEmotion1(emotion) {
+      localStorage.setItem('selectedEmotion1', emotion); // ローカルストレージに保存
+      window.location.href = 'emotion2.html'; // 次のページへ遷移
+    }
+  </script>
+</body>
+</html>

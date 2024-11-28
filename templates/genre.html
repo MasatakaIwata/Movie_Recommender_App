@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Select Genre</title>
+</head>
+<body>
+  <h1>Step 1: Select a Genre</h1>
+  <div>
+    <button onclick="selectGenre('Action')">Action</button>
+    <button onclick="selectGenre('Adventure')">Adventure</button>
+    <button onclick="selectGenre('Animation')">Animation</button>
+    <button onclick="selectGenre('Comedy')">Comedy</button>
+    <button onclick="selectGenre('Crime')">Crime</button>
+    <button onclick="selectGenre('Documentary')">Documentary</button>
+    <button onclick="selectGenre('Drama')">Drama</button>
+    <button onclick="selectGenre('Family')">Family</button>
+    <button onclick="selectGenre('Fantasy')">Fantasy</button>
+    <button onclick="selectGenre('Fantasy')">History</button>
+    <button onclick="selectGenre('Horror')">Horror</button>
+    <button onclick="selectGenre('Music')">Music</button>
+    <button onclick="selectGenre('Mystery')">Mystery</button>
+    <button onclick="selectGenre('Romance')">Romance</button>
+    <button onclick="selectGenre('Science Fiction')">Science Fiction</button>
+    <button onclick="selectGenre('TV Movie')">TV Movie</button>
+    <button onclick="selectGenre('Thriller')">Thriller</button>
+    <button onclick="selectGenre('War')">War</button>
+    <button onclick="selectGenre('Western')">Western</button>
+  </div>
+
+  <script>
+    function selectGenre(genre) {
+      localStorage.setItem('selectedGenre', genre); // ローカルストレージに保存
+      window.location.href = 'emotion1.html'; // 次のページへ遷移
+    }
+  </script>
+</body>
+</html>

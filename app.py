@@ -3,7 +3,7 @@ from movie_recommender import MovieRecommender
 from flask_cors import CORS
 import pandas as pd
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder='templates')
 CORS(app)
 
 # CSVファイルから映画データを読み込む
@@ -25,35 +25,54 @@ recommender.compute_cosine_similarity()
 def favicon():
     return '', 204
 
+# 各HTMLページを提供するルート
 @app.route('/')
-def index():
-    return render_template('index.html')
+def genre_page():
+    return render_template('genre.html')
+
+@app.route('/emotion1.html')
+def emotion1_page():
+    return render_template('emotion1.html')
+
+@app.route('/emotion2.html')
+def emotion2_page():
+    return render_template('emotion2.html')
+
+@app.route('/results.html')
+def results_page():
+    return render_template('results.html')
 
 # app.py の recommend エンドポイント
-@app.route('/recommend', methods=['POST'])
+# 推薦API
+@app.route('/recommend', methods=['GET'])
 def recommend():
-    try:
-        data = request.get_json()
-        genres = data['genres']
-        emotion_label_1 = data['emotion_label_1']
-        emotion_label_2 = data['emotion_label_2']
+    genre = request.args.get('genre')
+    emotion1 = request.args.get('emotion1')
+    emotion2 = request.args.get('emotion2')
 
-        # デバッグ用のログを追加
-        print(f"Received data: genres={genres}, emotion_label_1={emotion_label_1}, emotion_label_2={emotion_label_2}")
+    # デバッグ用のログを追加
+    print(f"Received data: genres={genre}, emotion_label_1={emotion1}, emotion_label_2={emotion2}")
 
-        recommender.add_movie_with_input(genres, emotion_label_1, emotion_label_2)
-        recommendations = recommender.recommend_similar_movies(movie_title='user movie', top_n=5)
+    if not genre or not emotion1 or not emotion2:
+        print("Error: Missing genre, emotion1, or emotion2 in the request.")
+        return jsonify({"movies": []}), 400
 
-        # 推薦結果が None の場合の処理
-        if recommendations is None:
-            return jsonify({"error": "No recommendations found"}), 500
+    # ユーザー入力を基に映画を追加
+    recommender.add_movie_with_input(genre, emotion1, emotion2)
 
-        # JSON形式で推薦結果を返す
-        recommendations_list = [{"ID": movie_id, "Title": title} for movie_id, title in recommendations.items()]
-        return jsonify(recommendations_list), 200
-    except Exception as e:
-        print(f"Error: {e}") # エラーメッセージをコンソールに出力
-        return jsonify({"error": str(e)}), 500
+    # 推薦結果を取得
+    recommendations = recommender.recommend_similar_movies()
+
+    # 映画のIDとタイトルのリストを作成
+    response = [{"ID": movie_id, "Title": title} for movie_id, title in recommendations.items()]
+
+    # 推薦結果をコンソールに表示
+    print("Recommendations:")
+    for movie in response:
+        print(f"ID: {movie['ID']}, Title: {movie['Title']}")
+
+    # 推薦結果をJSONとして返す
+    return jsonify({"movies": response})
 
 if __name__ == '__main__':
     app.run(debug=True)
