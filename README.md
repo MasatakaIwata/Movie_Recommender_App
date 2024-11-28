@@ -35,6 +35,8 @@ movie_recommender_app/
 │
 ├── static/                     # 정적 파일을 저장하는 디렉토리
 │   ├── app.js                  # 프론트엔드 자바스크립트 코드
+│   ├── styles.css                  # 프론트엔드 css 코드
+│   └── results.css                  # results 페이지 css 코드
 │
 └── templates/                  # HTML 템플릿을 저장하는 디렉토리
 │   ├── results.html              # 사용자가 액세스하는 메인 HTML 파일(추천 결과 출력)
