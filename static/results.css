@@ -103,9 +103,9 @@
   }
 
   #recommendations {
-    display: flex;
-    flex-wrap: wrap;  /* 横並びにして、画面に収まらない場合は折り返す */
-    gap: 20px;
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* 画像カードの幅を広げる */
     padding: 20px;
     margin-top: 20px;
   }
@@ -119,10 +119,6 @@
     text-align: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s, box-shadow 0.3s;
-    display: flex;  /* 横並びにするためにflexboxを使用 */
-    flex-direction: row;  /* 画像とタイトルを横並びに配置 */
-    align-items: center;  /* 画像とテキストを垂直方向に中央揃え */
-    justify-content: flex-start;  /* 左寄せ */
   }
 
   .movie-card:hover {
@@ -131,16 +127,11 @@
   }
 
   .movie-image {
-    width: 100px;  /* 画像サイズを100pxに設定 */
-    height: auto;
+    width: 100%; /* カード幅に合わせる */
+    height: 300px; /* 高さを調整 */
     border-radius: 4px;
-    margin-right: 16px;  /* 画像とタイトルの間にスペースを追加 */
-    object-fit: cover;
-  }
-
-  .movie-title {
-    font-size: 16px;
-    font-weight: bold;
+    margin-bottom: 8px;
+    object-fit: cover; /* 画像をカードにきれいに収める */
   }
 
   .box {
