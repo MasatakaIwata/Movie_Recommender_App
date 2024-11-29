@@ -41,9 +41,10 @@ export default function GenreSelection() {
         fontSize: '24px',
         fontWeight: 'bold',
         textAlign: 'center',
-        marginBottom: '20px'
+        marginBottom: '20px',
+        color: '#333',
       }}>
-        好きな映画のジャンルを選んでください
+        Select Your favorite genre
       </h1>
       <div style={{
         display: 'grid',
