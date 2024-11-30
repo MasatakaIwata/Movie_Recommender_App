@@ -64,7 +64,7 @@
     object-fit: cover; /* 画像をカードにきれいに収める */
   }
 
-  #re-recommend-button {
+  #recommend-button {
     margin-top: 20px;
     padding: 10px 20px;
     background-color: var(--primary);
@@ -75,7 +75,7 @@
     transition: background-color 0.3s;
   }
 
-  #re-recommend-button:hover {
+  #recommend-button:hover {
     background-color: var(--dark);
     color: var(--primary);
   }

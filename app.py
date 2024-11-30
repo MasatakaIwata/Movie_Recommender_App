@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, redirect, url_for
 from movie_recommender import MovieRecommender
 from flask_cors import CORS
 import pandas as pd
@@ -9,8 +9,7 @@ CORS(app)
 # CSVファイルから映画データを読み込む
 def load_movie_data(file_path):
     df = pd.read_csv(file_path)
-    # 必要に応じてデータフレームから辞書形式に変換
-    movie_data = df.to_dict(orient='records')
+    movie_data = df.to_dict(orient='records')  # 必要に応じて辞書形式に変換
     return movie_data
 
 # CSVファイルを指定してデータをロード
@@ -25,15 +24,22 @@ recommender.compute_cosine_similarity()
 def favicon():
     return '', 204
 
-# 各HTMLページを提供するルート
+# アプリ起動時の初期ページを results.html に変更
 @app.route('/')
+def initial_results_page():
+    return render_template('results.html')
+
+# ジャンル選択ページ
+@app.route('/genre.html')
 def genre_page():
     return render_template('genre.html')
 
+# 感情選択1ページ
 @app.route('/emotion1.html')
 def emotion1_page():
     return render_template('emotion1.html')
 
+# 感情選択2ページ
 @app.route('/emotion2.html')
 def emotion2_page():
     return render_template('emotion2.html')
@@ -42,39 +48,35 @@ def emotion2_page():
 def results_page():
     return render_template('results.html')
 
-# app.py の recommend エンドポイント
-# 推薦API
+# 推薦APIエンドポイント
 @app.route('/recommend', methods=['GET'])
 def recommend():
     genre = request.args.get('genre')
     emotion1 = request.args.get('emotion1')
     emotion2 = request.args.get('emotion2')
 
-    # デバッグ用のログを追加
-    print(f"Received data: genres={genre}, emotion_label_1={emotion1}, emotion_label_2={emotion2}")
+    print(f"Received data: genre={genre}, emotion1={emotion1}, emotion2={emotion2}")  # デバッグ用
 
     if not genre or not emotion1 or not emotion2:
         print("Error: Missing genre, emotion1, or emotion2 in the request.")
         return jsonify({"movies": []}), 400
 
-    # ユーザー入力を基に映画を追加
+    # ユーザー入力に基づき新しい映画を追加
     recommender.add_movie_with_input(genre, emotion1, emotion2)
 
     # 推薦結果を取得
     recommendations = recommender.recommend_similar_movies()
 
-    # 映画のID、タイトル、画像URLのリストを作成
     response = [
         {"ID": movie_id, "Title": movie_data['Title'], "ImageURL": movie_data['ImageURL']}
         for movie_id, movie_data in recommendations.items()
     ]
 
-    # 推薦結果をコンソールに表示
+    # 推薦結果をコンソールに表示（デバッグ用）
     print("Recommendations:")
     for movie in response:
         print(f"ID: {movie['ID']}, Title: {movie['Title']}, ImageURL: {movie['ImageURL']}")
 
-    # 推薦結果をJSONとして返す
     return jsonify({"movies": response})
 
 if __name__ == '__main__':
