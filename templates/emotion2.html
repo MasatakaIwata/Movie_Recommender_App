@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Select emotion2</title>
-    <link rel="stylesheet" href="/static/styles.css">
+    <title>Select emotion 2</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 <body>
     <div class="container">
@@ -12,27 +12,18 @@
         <div class="content">
             <h1>What is your feeling right now?</h1>
             <h2>Or what you want to feel?</h2>
-            <div class="emotions">
-                <button class="emotion-button" data-emotion="anger" style="grid-column: 3; grid-row: 2;">anger</button>
-                <button class="emotion-button" data-emotion="disgust" style="grid-column: 2; grid-row: 3;">disgust</button>
-                <button class="emotion-button" data-emotion="fear" style="grid-column: 4; grid-row: 3;">fear</button>
-                <button class="emotion-button" data-emotion="joy" style="grid-column: 3; grid-row: 4;">joy</button>
-                <button class="emotion-button" data-emotion="neutral" style="grid-column: 2; grid-row: 5;">neutral</button>
-                <button class="emotion-button" data-emotion="sadness" style="grid-column: 4; grid-row: 5;">sadness</button>
-                <button class="emotion-button" data-emotion="surprise" style="grid-column: 3; grid-row: 6;">surprise</button>
+            <div class="emotion-options">
+                <button class="emotion-option" data-emotion="anger" style="grid-column: 3; grid-row: 2;">anger</button>
+                <button class="emotion-option" data-emotion="disgust" style="grid-column: 2; grid-row: 3;">disgust</button>
+                <button class="emotion-option" data-emotion="fear" style="grid-column: 4; grid-row: 3;">fear</button>
+                <button class="emotion-option" data-emotion="joy" style="grid-column: 3; grid-row: 4;">joy</button>
+                <button class="emotion-option" data-emotion="neutral" style="grid-column: 2; grid-row: 5;">neutral</button>
+                <button class="emotion-option" data-emotion="sadness" style="grid-column: 4; grid-row: 5;">sadness</button>
+                <button class="emotion-option" data-emotion="surprise" style="grid-column: 3; grid-row: 6;">surprise</button>
             </div>
         </div>
     </div>
 
-    <script>
-        document.querySelectorAll('.emotion-button').forEach(button => {
-            button.addEventListener('click', function() {
-                const emotion2 = this.getAttribute('data-emotion');
-                localStorage.setItem('selectedEmotion2', emotion2); // ローカルストレージに保存
-                alert(`Selected emotion2: ${emotion2}`);
-                window.location.href = '/results.html'; // 推薦結果ページへ遷移
-            });
-        });
-    </script>
+    <script src="{{ url_for('static', filename='js/emotion2.js') }}"></script>
 </body>
 </html>

@@ -47,7 +47,7 @@ h2 {
     font-weight: normal;
 }
 
-.emotions {
+.genre-options, .emotion-options {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     gap: 0.025rem;
@@ -55,7 +55,7 @@ h2 {
     margin: 0 auto;
 }
 
-.button, .emotion-button {
+.genre-option, .emotion-option {
     background-color: #22c55e;
     border: none;
     color: white;
@@ -67,6 +67,6 @@ h2 {
     transition: background-color 0.3s;
 }
 
-.button:hover, .emotion-button:hover {
+.genre-option:hover, .emotion-option:hover {
     background-color: #16a34a;
 }

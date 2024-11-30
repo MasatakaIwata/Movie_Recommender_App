@@ -58,3 +58,8 @@ async function fetchRecommendations() {
 }
 
 fetchRecommendations();
+
+document.getElementById("re-recommend-button").addEventListener("click", () => {
+    // ジャンル選択ページに遷移
+    window.location.href = "genre.html";
+});

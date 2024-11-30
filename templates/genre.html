@@ -4,46 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Select Genre</title>
-    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 <body>
     <div class="container">
         <div class="background"></div>
         <div class="content">
             <h1>What Genre you like?</h1>
-            <div class="emotions">
-                <button class="button" data-genre="Action" style="grid-column: 2; grid-row: 3;">Action</button>
-                <button class="button" data-genre="Adventure" style="grid-column: 3; grid-row: 4;">Adventure</button>
-                <button class="button" data-genre="Animation" style="grid-column: 2; grid-row: 5;">Animation</button>
-                <button class="button" data-genre="Comedy" style="grid-column: 4; grid-row: 3;">Comedy</button>
-                <button class="button" data-genre="Crime" style="grid-column: 4; grid-row: 5;">Crime</button>
-                <button class="button" data-genre="Documentary" style="grid-column: 3; grid-row: 6;">Documentary</button>
-                <button class="button" data-genre="Drama" style="grid-column: 2; grid-row: 7;">Drama</button>
-                <button class="button" data-genre="Family" style="grid-column: 4; grid-row: 7;">Family</button>
-                <button class="button" data-genre="Fantasy" style="grid-column: 1; grid-row: 8;">Fantasy</button>
-                <button class="button" data-genre="History" style="grid-column: 3; grid-row: 2;">History</button>
-                <button class="button" data-genre="Horror" style="grid-column: 5; grid-row: 8;">Horror</button>
-                <button class="button" data-genre="Music" style="grid-column: 5; grid-row: 6;">Music</button>
-                <button class="button" data-genre="Mystery" style="grid-column: 1; grid-row: 6;">Mystery</button>
-                <button class="button" data-genre="Romance" style="grid-column: 1; grid-row: 4;">Romance</button>
-                <button class="button" data-genre="Science Fiction" style="grid-column: 5; grid-row: 4;">Science Fiction</button>
-                <button class="button" data-genre="TV Movie" style="grid-column: 3; grid-row: 10;">TV Movie</button>
-                <button class="button" data-genre="Thriller" style="grid-column: 3; grid-row: 8;">Thriller</button>
-                <button class="button" data-genre="War" style="grid-column: 2; grid-row: 9;">War</button>
-                <button class="button" data-genre="Western" style="grid-column: 4; grid-row: 9;">Western</button>
+            <div class="genre-options">
+                <button class="genre-option" data-genre="Action" style="grid-column: 2; grid-row: 3;">Action</button>
+                <button class="genre-option" data-genre="Adventure" style="grid-column: 3; grid-row: 4;">Adventure</button>
+                <button class="genre-option" data-genre="Animation" style="grid-column: 2; grid-row: 5;">Animation</button>
+                <button class="genre-option" data-genre="Comedy" style="grid-column: 4; grid-row: 3;">Comedy</button>
+                <button class="genre-option" data-genre="Crime" style="grid-column: 4; grid-row: 5;">Crime</button>
+                <button class="genre-option" data-genre="Documentary" style="grid-column: 3; grid-row: 6;">Documentary</button>
+                <button class="genre-option" data-genre="Drama" style="grid-column: 2; grid-row: 7;">Drama</button>
+                <button class="genre-option" data-genre="Family" style="grid-column: 4; grid-row: 7;">Family</button>
+                <button class="genre-option" data-genre="Fantasy" style="grid-column: 1; grid-row: 8;">Fantasy</button>
+                <button class="genre-option" data-genre="History" style="grid-column: 3; grid-row: 2;">History</button>
+                <button class="genre-option" data-genre="Horror" style="grid-column: 5; grid-row: 8;">Horror</button>
+                <button class="genre-option" data-genre="Music" style="grid-column: 5; grid-row: 6;">Music</button>
+                <button class="genre-option" data-genre="Mystery" style="grid-column: 1; grid-row: 6;">Mystery</button>
+                <button class="genre-option" data-genre="Romance" style="grid-column: 1; grid-row: 4;">Romance</button>
+                <button class="genre-option" data-genre="Science Fiction" style="grid-column: 5; grid-row: 4;">Science Fiction</button>
+                <button class="genre-option" data-genre="TV Movie" style="grid-column: 3; grid-row: 10;">TV Movie</button>
+                <button class="genre-option" data-genre="Thriller" style="grid-column: 3; grid-row: 8;">Thriller</button>
+                <button class="genre-option" data-genre="War" style="grid-column: 2; grid-row: 9;">War</button>
+                <button class="genre-option" data-genre="Western" style="grid-column: 4; grid-row: 9;">Western</button>
             </div>
         </div>
     </div>
 
-    <script>
-        document.querySelectorAll('.button').forEach(button => {
-            button.addEventListener('click', function() {
-                const genre = this.getAttribute('data-genre');
-                localStorage.setItem('selectedGenre', genre); // ローカルストレージに保存
-                alert(`Selected Genre: ${genre}`);
-                window.location.href = '/emotion1.html'; // エモーション1選択ページへ遷移
-            });
-        });
-    </script>
+    <script src="{{ url_for('static', filename='js/genre.js') }}"></script>
 </body>
 </html>

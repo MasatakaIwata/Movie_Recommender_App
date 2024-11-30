@@ -2,22 +2,19 @@
 <html>
 <head>
   <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>KEY MOVIE RECOMMEND</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="/static/results.css">
-  <script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js" integrity="sha384-3LK/3kTpDE/Pkp8gTNp2gR/2gOiwQ6QaO7Td0zV76UFJVhqLl4Vl3KL1We6q6wR9" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/results.css') }}">
 </head>
 <body>
   <div class="wrapper">
-
     <section class="main-container" >
-      <div class="location" id="home">
-
-          <h1>Movie Recommendations</h1>
-          <ul id="recommendations"></ul> <!-- 推薦結果のリストを表示 -->
-          <script src="{{ url_for('static', filename='results.js') }}"></script> <!-- JavaScriptコード -->
-      </div>
+      <h1>Recommended Movies</h1>
+      <ul id="recommendations"></ul> <!-- 推薦結果のリストを表示 -->
+    </section>
   </div>
+  <button id="re-recommend-button">Recommend Again</button>
+
+  <script src="{{ url_for('static', filename='js/results.js') }}"></script>
 </body>
 </html>
