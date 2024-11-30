@@ -34,9 +34,14 @@ movie_recommender_app/
 ├── requirements.txt            # 필요한 Python 패키지 목록
 │
 ├── static/                     # 정적 파일을 저장하는 디렉토리
-│   ├── app.js                  # 프론트엔드 자바스크립트 코드
-│   ├── styles.css                  # 프론트엔드 css 코드
-│   └── results.css                  # results 페이지 css 코드
+│   ├── css/
+│   │   ├── style.css        # 선택 페이지 스타일
+│   │   └── results.css　　　　 # 추천 결과 페이지 스타일
+│   └── js/
+│       ├── genre.js         # 장르 선택 로직
+│       ├── emotion1.js      # 감정1 선택 로직
+│       ├── emotion2.js      # 감정2 선택 로직
+│       └── results.js       # 추천 결과 로직
 │
 └── templates/                  # HTML 템플릿을 저장하는 디렉토리
 │   ├── results.html              # 사용자가 액세스하는 메인 HTML 파일(추천 결과 출력)
