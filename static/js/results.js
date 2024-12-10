@@ -42,8 +42,10 @@ async function fetchRecommendations() {
     }
 }
 
+fetchRecommendations();
+
 // Recommend New Movies ボタンをセットアップ
-document.addEventListener('DOMContentLoaded', () => {
+/*document.addEventListener('DOMContentLoaded', () => {
     fetchRecommendations();
 
     const recommendBtn = document.getElementById('recommend-button');
@@ -52,3 +54,4 @@ document.addEventListener('DOMContentLoaded', () => {
         window.location.href = 'genre.html';
     });
 });
+*/

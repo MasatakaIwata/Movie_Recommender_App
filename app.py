@@ -25,12 +25,12 @@ def favicon():
     return '', 204
 
 # アプリ起動時の初期ページを results.html に変更
-@app.route('/')
+'''@app.route('/')
 def initial_results_page():
-    return render_template('results.html')
+    return render_template('results.html')'''
 
 # ジャンル選択ページ
-@app.route('/genre.html')
+@app.route('/')
 def genre_page():
     return render_template('genre.html')
 

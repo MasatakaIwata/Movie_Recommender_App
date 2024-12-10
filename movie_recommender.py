@@ -64,7 +64,7 @@ class MovieRecommender:
             return None
 
         # 指定された映画の類似度スコアを取得し、類似度が高い順に並べる
-        similar_movies = self.cosine_sim_df.loc[movie_title].sort_values(by='similarity_score',ascending=False)
+        similar_movies = self.cosine_sim_df.loc[movie_title].sort_values(ascending=False)
 
         # 自分自身を除外して、上位top_nの映画を推薦
         recommended_movies = similar_movies.drop(movie_title).head(top_n)
